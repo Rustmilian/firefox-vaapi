@@ -70,8 +70,8 @@ source=(
   https://archive.mozilla.org/pub/firefox/releases/$pkgver/source/firefox-$pkgver.source.tar.xz{,.asc}
   $_pkgname.desktop
   identity-icons-brand.svg
-  0001-libwebrtc-screen-cast-sync.patch
-  0002-enable-vaapi.patch
+  libwebrtc-screen-cast-sync.patch
+  firefox-enable-vaapi.patch
 )
 validpgpkeys=(
   '14F26682D0916CDD81E37B6D61B7B526D98F0353'  # Mozilla Software Releases <release@mozilla.com>
@@ -80,13 +80,13 @@ sha256sums=('d3882492190e4fdcfa142772cf35de5403effb011d24357b315d643ed9168a39'
             'SKIP'
             '298eae9de76ec53182f38d5c549d0379569916eebf62149f9d7f4a7edef36abf'
             'a9b8b4a0a1f4a7b4af77d5fc70c2686d624038909263c795ecc81e0aec7711e9'
-            '43c83101b7ad7dba6f5fffeb89b70a661a547d506a031ea2beada42ccf04eec7'
+            '984ef7c4e3a3e7f80848bda815a531d9443a79b6c3572c1b796a47b01a4e54cf'
             'f2b19e14d8add13930e2ce89fa5e1b252ac979c8177a78a6fa3eb4ae2ad56633')
 b2sums=('aae3b34f1642ddab5f0fcd104b4168c9d9856a1bbbc197ff3c8e1bbae0c8d1c033db6e974e10b5352f4457e890c50f1f9d5099a6b7200c3474b71ac7e6317113'
         'SKIP'
         'e18f2c22e394ca3b6758bc130245b254947e4d15921be3da443d6d7c3c4b0d22ead1b39fbc10a4f896edd19e2a1dffbd1cbb34dc4beb0621a6ddb70ccc53b3a7'
         '63a8dd9d8910f9efb353bed452d8b4b2a2da435857ccee083fc0c557f8c4c1339ca593b463db320f70387a1b63f1a79e709e9d12c69520993e26d85a3d742e34'
-        '2bf65874c8c1f41c9273b68d74f4fe5c81dca5acbad0b9a5f917df1d46e1b2a1fb25d42a419eb885e76f4d193483cdeb6294e14ed4b2e241c34b84565b6ffd72'
+        'a888a9843022907627cca57ef3fae73b6578952b7b7a994ce8659de9d74b0a70ea80d648b63249eae691e507b3c47e66e10cb8934c61b900a35d1b0a6e0bf0e9'
         '35a18c4fefac69bdbcabb5c0005a2cc3afb640a09ab92a9025c3d627a5be8857da7d182f203be55d1e64a07dd1d88d56247d8131bd45c7fa6e18526b30624a71')
 
 # Google API keys (see http://www.chromium.org/developers/how-tos/api-keys)
@@ -108,12 +108,12 @@ prepare() {
   # https://bugs.archlinux.org/task/76231
   # https://bugzilla.mozilla.org/show_bug.cgi?id=1790496
   # https://src.fedoraproject.org/rpms/firefox/blob/rawhide/f/libwebrtc-screen-cast-sync.patch
-  patch -Np1 -i ../0001-libwebrtc-screen-cast-sync.patch
+  patch -Np1 -i ../libwebrtc-screen-cast-sync.patch
 
   # https://bugzilla.mozilla.org/show_bug.cgi?id=1809068
   # https://bbs.archlinux.org/viewtopic.php?id=281398
   # https://src.fedoraproject.org/rpms/firefox/blob/rawhide/f/firefox-enable-vaapi.patch
-  patch -Np1 -i ../0002-enable-vaapi.patch
+  patch -Np1 -i ../firefox-enable-vaapi.patch
 
   echo -n "$_google_api_key" >google-api-key
   echo -n "$_mozilla_api_key" >mozilla-api-key
